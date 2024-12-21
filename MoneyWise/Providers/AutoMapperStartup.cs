@@ -8,7 +8,7 @@ namespace MoneyWise.Providers
     {
         public static IServiceCollection AddMapperStartup(this IServiceCollection services)
         {
-            //services.AddAutoMapper(typeof(DomainModelMappingProfile));
+            services.AddAutoMapper(typeof(DomainModelMappingProfile));
 
             return services;
         }

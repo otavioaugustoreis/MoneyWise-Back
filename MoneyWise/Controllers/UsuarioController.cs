@@ -2,36 +2,34 @@
 using MoneyWise.Data.Entities;
 using MoneyWise.Domain.Services;
 
-
-
-
 namespace MoneyWise.Controllers
 {
+
     //Indicando que é Api controller
     [ApiController]
     //Rota padrão - Pedido
     [Route("[controller]")]
-    public class PedidoController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
-        private readonly PedidoService pedidoService;
+        private readonly UsuarioService usuarioService;
 
-
-        public PedidoController(PedidoService pedido)
+        public UsuarioController(UsuarioService _usuarioService)
         {
-            pedidoService = pedido;
+            this.usuarioService= _usuarioService;
         }
 
         [HttpGet]
-        public ActionResult<List<PedidoEntity>> GetAll() {
-            return pedidoService.Get().ToList();
+        public ActionResult<List<UsuarioEntity>> GetAll()
+        {
+            return usuarioService.Get().ToList();
         }
 
         [HttpGet("{id:int}")]
-        public ActionResult<PedidoEntity> GetId(int? id)
+        public ActionResult<UsuarioEntity> GetId(int? id)
         {
             if (id is null || id < 0) return BadRequest("Id não retornou");
-
-            var pedido = pedidoService.GetId(p => p.Id == id);
+            
+                        var pedido = usuarioService.GetId(p => p.Id == id);
 
             if (pedido is null) return BadRequest("Categoria não encontrada");
 

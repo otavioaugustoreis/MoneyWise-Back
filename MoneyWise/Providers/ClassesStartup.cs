@@ -13,13 +13,10 @@ namespace MoneyWise.Providers
             services.AddScoped<IUsuarioRepository, UsuarioService>();
             services.AddScoped<IPedidoRepository, PedidoService>();
 
-
             return services;
         }
         public static IServiceCollection AddDIPSingletonClasse(this IServiceCollection services)
         {
-
-
             return services;
         }
 

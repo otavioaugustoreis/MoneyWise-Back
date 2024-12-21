@@ -36,7 +36,7 @@ namespace MoneyWise.Data.Entities
         public UsuarioEntity()
         {
         }
-        public UsuarioEntity(string dsNome, string dsCPF, string dsEmail, int id, int nrIdade)
+        public UsuarioEntity(int id , string dsNome, string dsCPF, string dsEmail, int nrIdade)
             : base(id)
         {
             DsNome = dsNome;
