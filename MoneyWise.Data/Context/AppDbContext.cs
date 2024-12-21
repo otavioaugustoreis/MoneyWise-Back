@@ -10,7 +10,6 @@ namespace MoneyWise.Data.Context
 {
     public  class AppDbContext : DbContext
     {
-
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)
         {
@@ -22,6 +21,16 @@ namespace MoneyWise.Data.Context
         public DbSet<UsuarioEntity> _UsuarioEntity { get; set; }
         public DbSet<PedidoEntity> _PedidoEntity   { get; set; }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer(
+        //            "YourConnectionString",
+        //            b => b.MigrationsAssembly("MoneyWise.Data")); // Aponta para o projeto onde as migrações estão
+        //    }
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Aqui é onde vem as relações 
@@ -29,6 +38,8 @@ namespace MoneyWise.Data.Context
                 .HasMany(p => p.pedidoEntities)       //=> HasMany -> Tem muitos (Um usuário tem muitos pedidos)
                 .WithOne(u => u.usuarioEntity)        //=> WithOne -> Tem 1 (E um pedido tem 1 usuário)
                 .HasForeignKey(u => u.UsuarioId);     //=> HasForeIgnKey -> Selecionando a chave estrangeira
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

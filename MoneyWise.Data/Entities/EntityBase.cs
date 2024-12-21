@@ -16,17 +16,11 @@ namespace MoneyWise.Data.Entities
 
         [Required]
         [Column("dh_inclusao")]
-        public DateTime DateOfInclusion { get; set; }
+        public DateTime DateOfInclusion { get; set; } = DateTime.Now;
 
         public EntityBase()
         {
 
-        }
-
-        protected EntityBase(int id)
-        {
-            Id = id;
-            DateOfInclusion = DateTime.Now;
         }
     }
 }

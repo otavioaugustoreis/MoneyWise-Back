@@ -11,11 +11,11 @@ namespace MoneyWise.Providers
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             }).AddNewtonsoftJson((
-            //Configurando o NewTonSoftJso. Essa linha define que as propriedades dos objetos serializados e desserializados devem seguir o padrão camelCase.
+            //Configurando o NewTonSoftJson. Essa linha define que as propriedades dos objetos serializados e desserializados devem seguir o padrão camelCase.
             options =>
             {
-                options.SerializerSettings.ContractResolver =
-                    new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                //Ignorando referência ciclica
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             }));
 
             return services;

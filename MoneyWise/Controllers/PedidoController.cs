@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoneyWise.Data.Entities;
 using MoneyWise.Domain.Services;
+using MoneyWise.Repository.Interfaces;
 
 
 
@@ -13,17 +14,20 @@ namespace MoneyWise.Controllers
     [Route("[controller]")]
     public class PedidoController : ControllerBase
     {
-        private readonly PedidoService pedidoService;
+        private readonly IPedidoRepository pedidoService;
 
-
-        public PedidoController(PedidoService pedido)
+        // Injeção da interface
+        public PedidoController(IPedidoRepository pedidoRepository)
         {
-            pedidoService = pedido;
+            pedidoService = pedidoRepository;
         }
 
         [HttpGet]
-        public ActionResult<List<PedidoEntity>> GetAll() {
-            return pedidoService.Get().ToList();
+        public async Task<ActionResult<List<PedidoEntity>>> GetAll() {
+
+            var pedidos = await pedidoService.CarregarUsuarios();
+
+            return Ok(pedidos); 
         }
 
         [HttpGet("{id:int}")]
@@ -31,7 +35,7 @@ namespace MoneyWise.Controllers
         {
             if (id is null || id < 0) return BadRequest("Id não retornou");
 
-            var pedido = pedidoService.GetId(p => p.Id == id);
+            var pedido = pedidoService.CarregarUsuarioId(id);
 
             if (pedido is null) return BadRequest("Categoria não encontrada");
 

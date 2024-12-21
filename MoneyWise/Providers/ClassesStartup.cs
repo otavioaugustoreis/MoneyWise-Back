@@ -1,4 +1,5 @@
-﻿using MoneyWise.Domain.Services;
+﻿using MoneyWise.Data;
+using MoneyWise.Domain.Services;
 using MoneyWise.Repository.Interfaces;
 using MoneyWise.Repository.Patterns;
 
@@ -12,6 +13,7 @@ namespace MoneyWise.Providers
 
             services.AddScoped<IUsuarioRepository, UsuarioService>();
             services.AddScoped<IPedidoRepository, PedidoService>();
+            services.AddScoped<SeedingServiceData>();
 
             return services;
         }

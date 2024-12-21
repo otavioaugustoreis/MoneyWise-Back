@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MoneyWise.Data.Entities;
 using MoneyWise.Domain.Services;
+using MoneyWise.Models;
+using MoneyWise.Repository.Interfaces;
 
 namespace MoneyWise.Controllers
 {
@@ -11,29 +14,37 @@ namespace MoneyWise.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
-        private readonly UsuarioService usuarioService;
-
-        public UsuarioController(UsuarioService _usuarioService)
+        private readonly IUsuarioRepository _usuarioService;
+        private readonly IMapper _mapper;
+        public UsuarioController(IUsuarioRepository _usuarioService, IMapper _mapper)
         {
-            this.usuarioService= _usuarioService;
+            this._usuarioService= _usuarioService;
+            this._mapper = _mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<UsuarioEntity>> GetAll()
+        public ActionResult<List<UsuarioModel>> GetAll()
         {
-            return usuarioService.Get().ToList();
+            var usuario = _usuarioService.Get().ToList();
+
+            //Convertendo a Entidade para DTO
+            var usuarioDto = _mapper.Map<List<UsuarioModel>>(usuario);
+
+            return Ok(usuarioDto);
         }
 
         [HttpGet("{id:int}")]
-        public ActionResult<UsuarioEntity> GetId(int? id)
+        public ActionResult<UsuarioModel> GetId(int? id)
         {
-            if (id is null || id < 0) return BadRequest("Id não retornou");
+            if (id is null || id < 0) return BadRequest("Id não informado");
             
-                        var pedido = usuarioService.GetId(p => p.Id == id);
+            var usuario = _usuarioService.GetId(p => p.Id == id);
 
-            if (pedido is null) return BadRequest("Categoria não encontrada");
+            if (usuario is null) return BadRequest("Usuario não encontrado não encontrado");
 
-            return Ok(pedido);
+            var usuarioDto = _mapper.Map<UsuarioModel>(usuario);
+
+            return Ok(usuarioDto);
         }
 
     }

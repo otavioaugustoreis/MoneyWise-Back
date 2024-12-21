@@ -10,9 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-string conecction = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddConectionBD(conecction);
+builder.Services.AddConectionBD(builder.Configuration);
 
 builder.Services.AddDIPScoppedClasse();
 builder.Services.AddDIPSingletonClasse();
@@ -33,7 +31,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Erro ao executar o seeding: {ex.Message}");
+        throw new Exception($"Erro ao executar o seeding: {ex.Message}");
     }
 }
 

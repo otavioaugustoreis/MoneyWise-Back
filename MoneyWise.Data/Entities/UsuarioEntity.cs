@@ -36,8 +36,8 @@ namespace MoneyWise.Data.Entities
         public UsuarioEntity()
         {
         }
-        public UsuarioEntity(int id , string dsNome, string dsCPF, string dsEmail, int nrIdade)
-            : base(id)
+        public UsuarioEntity( string dsNome, string dsCPF, string dsEmail, int nrIdade)
+            : base()
         {
             DsNome = dsNome;
             DsCPF = dsCPF;
@@ -45,13 +45,10 @@ namespace MoneyWise.Data.Entities
             NrIdade = nrIdade;
         }
 
-        private void AdicionarPedidos(PedidoEntity produto)
+        public void AdicionarPedidos(PedidoEntity pedido)
         {
-            this.pedidoEntities.Add(produto);
+            this.pedidoEntities.Add(pedido);
         }
-
-        [Column("fk_pedido")]
-        public int PedidoId { get; set; }
 
         //Usado para ignorar referência ciclica
         [JsonIgnore]

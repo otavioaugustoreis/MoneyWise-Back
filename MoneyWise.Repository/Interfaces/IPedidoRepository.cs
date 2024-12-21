@@ -11,5 +11,7 @@ namespace MoneyWise.Repository.Interfaces
     public interface IPedidoRepository : IRepository<PedidoEntity>
     {
         //Aqui adicionamos funções que iriam aparecer no nosso projeto
+        Task<IEnumerable<PedidoEntity>> CarregarUsuarios();
+         PedidoEntity CarregarUsuarioId(int? id);
     }
 }
