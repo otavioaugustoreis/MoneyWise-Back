@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MoneyWise.Data.Entities;
+using MoneyWise.Domain.Filters;
 using MoneyWise.Domain.Services;
 using MoneyWise.Models;
 using MoneyWise.Repository.Interfaces;
+using MoneyWise.Repository.Pagination;
+using Newtonsoft.Json;
 
 namespace MoneyWise.Controllers
 {
@@ -47,5 +50,33 @@ namespace MoneyWise.Controllers
             return Ok(usuarioDto);
         }
 
+        [HttpGet("filter/preco/pagination")]
+        public ActionResult<IEnumerable<UsuarioModel>> GetUsuarioFiltroIdade([FromQuery] UsuarioFilter filter)
+        {
+            var usuarios = _usuarioService.GetUsuarioFiltro(filter);
+            return ObterUsuarios(usuarios);
+        }
+
+        private ActionResult<IEnumerable<UsuarioModel>> ObterUsuarios(PagedList<UsuarioEntity> usuarios)
+        {
+            var metadata = new
+            {
+                usuarios.TotalCount,
+                usuarios.PageSize,
+                usuarios.CurrentPage,
+                usuarios.TotalPages,
+                usuarios.HasNext,
+                usuarios.HasPrevius
+            };
+            //Serializando os objetos do metadata no formato Json, Headers, são as informações do retorno da API
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+            var usuarioDto = _mapper.Map<IEnumerable<UsuarioModel>>(usuarios);
+
+            return Ok(usuarioDto);
+
+        }
     }
 }
+

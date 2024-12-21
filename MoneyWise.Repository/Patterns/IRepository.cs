@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MoneyWise.Data.Entities;
+using MoneyWise.Domain.Filters;
+using MoneyWise.Repository.Pagination;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
