@@ -30,10 +30,18 @@ namespace MoneyWise.Data.Entities
 
         }
 
-        public PedidoEntity(UsuarioEntity usuarioEntity)
+        [Column("ds_nome")]
+        public  string DsNome { get; set; }
+
+        [Column("ds_detalhe")]
+        public string DsDetalhe { get; set; }
+
+        public PedidoEntity(UsuarioEntity usuarioEntity, string dsNome, string dsDetalhes)
             : base()
         {
             this.usuarioEntity = usuarioEntity;
+            this.DsNome = dsNome;
+            this.DsDetalhe = dsDetalhes;
         }
     }
 }

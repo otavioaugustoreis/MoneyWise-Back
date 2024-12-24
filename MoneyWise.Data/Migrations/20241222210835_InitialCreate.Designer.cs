@@ -12,7 +12,7 @@ using MoneyWise.Data.Context;
 namespace MoneyWise.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241221021527_InitialCreate")]
+    [Migration("20241222210835_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -37,6 +37,16 @@ namespace MoneyWise.Data.Migrations
                     b.Property<DateTime>("DateOfInclusion")
                         .HasColumnType("datetime2")
                         .HasColumnName("dh_inclusao");
+
+                    b.Property<string>("DsDetalhe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ds_detalhe");
+
+                    b.Property<string>("DsNome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ds_nome");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int")
@@ -80,10 +90,6 @@ namespace MoneyWise.Data.Migrations
                     b.Property<int>("NrIdade")
                         .HasColumnType("int")
                         .HasColumnName("nr_idade");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int")
-                        .HasColumnName("fk_pedido");
 
                     b.HasKey("Id");
 

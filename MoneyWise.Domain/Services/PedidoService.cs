@@ -17,13 +17,13 @@ namespace MoneyWise.Domain.Services
         {
         }
         
-        //Função assíncrona 
-        public async Task<IEnumerable<PedidoEntity>> CarregarUsuarios()
-        {
-            return await _context._PedidoEntity.Include(u => u.usuarioEntity)
-                                                 .ToListAsync();
-        }
-
+            //Função assíncrona 
+            public async Task<IEnumerable<PedidoEntity>> CarregarUsuarios()
+            {
+                return await _context._PedidoEntity
+                                        .Include(u => u.usuarioEntity)
+                                        .ToListAsync();
+            }
 
         public  PedidoEntity CarregarUsuarioId(int? id)
         {

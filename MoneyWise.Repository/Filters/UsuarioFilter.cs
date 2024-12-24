@@ -10,7 +10,6 @@ namespace MoneyWise.Domain.Filters
     public class UsuarioFilter : QueryStringParameters 
     {
         public int? NrIdade { get; set; }
-
         public string? NrIdadeCriterio { get; set; }
     }
 }

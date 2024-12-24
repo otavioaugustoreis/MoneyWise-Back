@@ -9,8 +9,8 @@ namespace MoneyWise.Providers
     {
         public static IServiceCollection AddDIPScoppedClasse(this IServiceCollection services )
         {
+            //Inicializando as classes com Scoped
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             services.AddScoped<IUsuarioRepository, UsuarioService>();
             services.AddScoped<IPedidoRepository, PedidoService>();
             services.AddScoped<SeedingServiceData>();

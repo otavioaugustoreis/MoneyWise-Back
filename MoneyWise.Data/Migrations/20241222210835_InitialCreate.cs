@@ -21,7 +21,6 @@ namespace MoneyWise.Data.Migrations
                     ds_cpf = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     nr_idade = table.Column<int>(type: "int", nullable: false),
                     ds_email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fk_pedido = table.Column<int>(type: "int", nullable: false),
                     dh_inclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -36,6 +35,8 @@ namespace MoneyWise.Data.Migrations
                     pk_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fk_usuario = table.Column<int>(type: "int", nullable: false),
+                    ds_nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ds_detalhe = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     dh_inclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

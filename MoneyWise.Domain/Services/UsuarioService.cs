@@ -2,7 +2,7 @@
 using MoneyWise.Data.Entities;
 using MoneyWise.Domain.Filters;
 using MoneyWise.Repository.Interfaces;
-using MoneyWise.Repository.Pagination;
+using MoneyWise.Repository.Patterns;
 using MoneyWise.Repository.Patterns;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,6 @@ namespace MoneyWise.Domain.Services
         {
         }
 
-        
         public PagedList<UsuarioEntity> GetUsuarioFiltro(UsuarioFilter usuarioFilterParams)
         {
             //IQueryble tem um desempenho melhor para as consultas no banco de dados
@@ -32,7 +31,6 @@ namespace MoneyWise.Domain.Services
                 if (NrIdadeCriterio.Equals("maior", StringComparison.OrdinalIgnoreCase))
                 {
                     usuarios = usuarios.Where(p => p.NrIdade > NrIdadeFiltro.Value).OrderBy(p => p.NrIdade);
-
                 }
                 else if (NrIdadeCriterio.Equals("menor", StringComparison.OrdinalIgnoreCase))
                 {
@@ -46,6 +44,10 @@ namespace MoneyWise.Domain.Services
             var usuariosFiltrados = PagedList<UsuarioEntity>.ToPagedList(usuarios, usuarioFilterParams.PageNumber, usuarioFilterParams.PageSize);
 
             return usuariosFiltrados;
+        }
+        public bool HasPedidos(int usuarioId)
+        {
+               return _context._PedidoEntity.Any(p => p.usuarioEntity.Id == usuarioId);
         }
     }
 }

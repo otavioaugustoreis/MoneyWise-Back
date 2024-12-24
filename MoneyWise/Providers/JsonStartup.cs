@@ -4,7 +4,7 @@ namespace MoneyWise.Providers
 {
     public static class JsonStartup
     {
-        //Ignorando referência ciclica
+        //Configuração do retorno Json
         public static object AddCofigurationJson(this IServiceCollection services)
         {
             services.AddControllers().AddJsonOptions(options =>

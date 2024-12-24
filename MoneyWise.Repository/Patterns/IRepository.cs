@@ -1,6 +1,6 @@
 ﻿using MoneyWise.Data.Entities;
 using MoneyWise.Domain.Filters;
-using MoneyWise.Repository.Pagination;
+using MoneyWise.Repository.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -35,6 +35,16 @@ namespace MoneyWise.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("dh_inclusao");
 
+                    b.Property<string>("DsDetalhe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ds_detalhe");
+
+                    b.Property<string>("DsNome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ds_nome");
+
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int")
                         .HasColumnName("fk_usuario");
@@ -77,10 +87,6 @@ namespace MoneyWise.Data.Migrations
                     b.Property<int>("NrIdade")
                         .HasColumnType("int")
                         .HasColumnName("nr_idade");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int")
-                        .HasColumnName("fk_pedido");
 
                     b.HasKey("Id");
 

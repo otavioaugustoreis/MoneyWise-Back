@@ -30,10 +30,6 @@ namespace MoneyWise.Providers
                     //Verificando se uma exceção ocorreu
                     if (contextFeature != null)
                     {
-                        //// Log detalhado da exceção
-                        //logger.LogError($"Erro: {contextFeature.Error.Message}\n" +
-                        //                $"Código HTTP: {context.Response.StatusCode}\n" +
-                        //                $"Rastreamento: {contextFeature.Error.StackTrace}");
 
                         // Resposta de erro para o cliente
                         await context.Response.WriteAsync(new ErrorDetails()

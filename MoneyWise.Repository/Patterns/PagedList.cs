@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoneyWise.Repository.Pagination
+namespace MoneyWise.Repository.Patterns
 {
+
+    //Classe para realizar paginação
     public class PagedList<T> : List<T> where T : class
     {
         public PagedList()

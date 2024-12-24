@@ -29,9 +29,9 @@ namespace MoneyWise.Data
             var usuario2 = new UsuarioEntity( "Joao", "493.166.558-63", "joao@gmail.com", 19);
             var usuario3 = new UsuarioEntity( "Otavio", "461.067.708-32", "otavio@gmail.com", 19);
 
-            var pedido1 = new PedidoEntity( usuario1);
-            var pedido2 = new PedidoEntity( usuario2);
-            var pedido3 = new PedidoEntity( usuario3);
+            var pedido1 = new PedidoEntity( usuario1, "Pedido de hamburguer", "Sem cebola");
+            var pedido2 = new PedidoEntity( usuario2, "Pedido de coxinha", "Sem detalhes");
+            var pedido3 = new PedidoEntity( usuario3, "Pedido de marmita", "Sal a parte");
 
             usuario1.AdicionarPedidos(pedido1);
             usuario2.AdicionarPedidos(pedido2);

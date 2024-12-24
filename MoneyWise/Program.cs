@@ -17,6 +17,7 @@ builder.Services.AddDIPSingletonClasse();
 builder.Services.AddMapperStartup();
 builder.Services.AddCofigurationJson();
 
+
 var app = builder.Build();
 
 

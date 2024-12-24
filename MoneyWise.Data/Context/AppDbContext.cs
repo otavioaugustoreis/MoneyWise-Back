@@ -21,15 +21,6 @@ namespace MoneyWise.Data.Context
         public DbSet<UsuarioEntity> _UsuarioEntity { get; set; }
         public DbSet<PedidoEntity> _PedidoEntity   { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(
-        //            "YourConnectionString",
-        //            b => b.MigrationsAssembly("MoneyWise.Data")); // Aponta para o projeto onde as migrações estão
-        //    }
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
